@@ -1,0 +1,63 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WorkerSpecialWorkingHours
+ *
+ * @ORM\Table(name="Worker_special_working_hours", uniqueConstraints={@ORM\UniqueConstraint(name="service_id_from_to", columns={"worker_id", "from", "to", "date"})}, indexes={@ORM\Index(name="IDX_915BE11D6B20BA36", columns={"worker_id"})})
+ * @ORM\Entity
+ */
+class WorkerSpecialWorkingHours
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_working", type="boolean", nullable=false)
+     */
+    private $isWorking = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="from", type="time", nullable=true)
+     */
+    private $from;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="to", type="time", nullable=true)
+     */
+    private $to;
+
+    /**
+     * @var \Worker
+     *
+     * @ORM\ManyToOne(targetEntity="Worker")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="worker_id", referencedColumnName="id")
+     * })
+     */
+    private $worker;
+
+
+}

@@ -1,0 +1,56 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ServiceWorkingHours
+ *
+ * @ORM\Table(name="Service_working_hours", uniqueConstraints={@ORM\UniqueConstraint(name="service_id_from_to", columns={"service_id", "from", "to", "day"})}, indexes={@ORM\Index(name="IDX_905B4367ED5CA9E6", columns={"service_id"})})
+ * @ORM\Entity
+ */
+class ServiceWorkingHours
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="day", type="boolean", nullable=false)
+     */
+    private $day;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="from", type="time", nullable=false)
+     */
+    private $from;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="to", type="time", nullable=false)
+     */
+    private $to;
+
+    /**
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * })
+     */
+    private $service;
+
+
+}

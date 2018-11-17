@@ -1,0 +1,53 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WorkerWorkingHours
+ *
+ * @ORM\Table(name="Worker_working_hours", uniqueConstraints={@ORM\UniqueConstraint(name="service_id_from_to", columns={"worker_id", "from", "to", "day"})})
+ * @ORM\Entity
+ */
+class WorkerWorkingHours
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="worker_id", type="integer", nullable=false)
+     */
+    private $workerId;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="day", type="boolean", nullable=false)
+     */
+    private $day;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="from", type="time", nullable=false)
+     */
+    private $from;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="to", type="time", nullable=false)
+     */
+    private $to;
+
+
+}

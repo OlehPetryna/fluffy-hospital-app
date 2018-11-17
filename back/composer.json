@@ -1,7 +1,9 @@
 {
     "require": {
         "slim/slim": "^3.0",
-        "propel/propel": "~2.0@dev"
+        "propel/propel": "~2.0@dev",
+        "doctrine/orm": "*",
+        "vlucas/phpdotenv": "^2.5"
     },
     "autoload": {
         "psr-4": {

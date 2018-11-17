@@ -1,0 +1,77 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Service
+ *
+ * @ORM\Table(name="Service", indexes={@ORM\Index(name="FK_Service_Worker", columns={"worker_id"})})
+ * @ORM\Entity
+ */
+class Service
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="working_hours_id", type="integer", nullable=false)
+     */
+    private $workingHoursId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=250, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="integer", nullable=false)
+     */
+    private $price;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="duration", type="integer", nullable=false)
+     */
+    private $duration;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $creationDate = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update_date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $lastUpdateDate = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Worker
+     *
+     * @ORM\ManyToOne(targetEntity="Worker")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="worker_id", referencedColumnName="id")
+     * })
+     */
+    private $worker;
+
+
+}
