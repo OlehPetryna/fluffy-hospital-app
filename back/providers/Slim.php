@@ -5,6 +5,7 @@ namespace app\providers;
 
 
 use app\controllers\DepartmentController;
+use app\controllers\ServicesController;
 use app\controllers\WorkerController;
 use Doctrine\ORM\EntityManager;
 use Pimple\Container;
@@ -21,5 +22,10 @@ class Slim implements ServiceProviderInterface
         $pimple[WorkerController::class] = function (Container $container): WorkerController {
             return new WorkerController($container[EntityManager::class]);
         };
+
+        $pimple[ServicesController::class] = function (Container $container): ServicesController {
+            return new ServicesController($container[EntityManager::class]);
+        };
+
     }
 }

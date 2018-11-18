@@ -12,7 +12,6 @@ use Slim\App;
  */
 
 $app->any('/', IndexAction::class);
-$app->any('/{path:.+}', IndexAction::class);
 
 $app->group('/api', function () use ($app) {
     $app->get('/service', ServicesController::class . ':list');
@@ -25,3 +24,4 @@ $app->group('/api', function () use ($app) {
     $app->get('/department/{id:\d+}', DepartmentController::class . ':show');
 });
 
+$app->any('/{path:.+}', IndexAction::class);
