@@ -161,7 +161,7 @@ class Appointment
     /**
      * Get client.
      *
-     * @return \Client|null
+     * @return Client|null
      */
     public function getClient()
     {
@@ -185,7 +185,7 @@ class Appointment
     /**
      * Get payment.
      *
-     * @return \Payment|null
+     * @return Payment|null
      */
     public function getPayment()
     {
@@ -209,7 +209,7 @@ class Appointment
     /**
      * Get service.
      *
-     * @return \Service|null
+     * @return Service|null
      */
     public function getService()
     {
@@ -257,7 +257,7 @@ class Appointment
     /**
      * Get worker.
      *
-     * @return \Worker|null
+     * @return Worker|null
      */
     public function getWorker()
     {

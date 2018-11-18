@@ -101,7 +101,7 @@ class Worker
     /**
      * Get department.
      *
-     * @return \Department|null
+     * @return Department|null
      */
     public function getDepartment()
     {
@@ -125,7 +125,7 @@ class Worker
     /**
      * Get user.
      *
-     * @return \User|null
+     * @return User|null
      */
     public function getUser()
     {

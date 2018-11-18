@@ -69,7 +69,7 @@ class WorkerPosition
     /**
      * Get position.
      *
-     * @return \Position|null
+     * @return Position|null
      */
     public function getPosition()
     {
@@ -93,7 +93,7 @@ class WorkerPosition
     /**
      * Get worker.
      *
-     * @return \Worker|null
+     * @return Worker|null
      */
     public function getWorker()
     {

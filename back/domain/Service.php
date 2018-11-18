@@ -245,7 +245,7 @@ class Service implements \JsonSerializable
     /**
      * Get worker.
      *
-     * @return \Worker|null
+     * @return Worker|null
      */
     public function getWorker()
     {

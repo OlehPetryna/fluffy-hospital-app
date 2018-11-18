@@ -153,7 +153,7 @@ class ServiceWorkingHours
     /**
      * Get service.
      *
-     * @return \Service|null
+     * @return Service|null
      */
     public function getService()
     {

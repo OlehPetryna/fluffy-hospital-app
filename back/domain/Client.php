@@ -59,7 +59,7 @@ class Client
     /**
      * Get user.
      *
-     * @return \User|null
+     * @return User|null
      */
     public function getUser()
     {
