@@ -14,6 +14,7 @@ $app->any('/', IndexAction::class);
 
 $app->group('/api', function () use ($app) {
     $app->get('/service', ServicesController::class . ':list');
+    $app->get('/service/{id:\d+}', ServicesController::class . ':show');
 
     $app->get('/worker', WorkerController::class . ':list');
     $app->get('/worker/{id:\d+}', WorkerController::class . ':show');
