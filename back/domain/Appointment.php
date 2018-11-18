@@ -1,6 +1,5 @@
 <?php
-
-
+namespace app\domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,7 +35,7 @@ class Appointment
     private $status;
 
     /**
-     * @var \Client
+     * @var Client
      *
      * @ORM\ManyToOne(targetEntity="Client")
      * @ORM\JoinColumns({
@@ -46,7 +45,7 @@ class Appointment
     private $client;
 
     /**
-     * @var \Payment
+     * @var Payment
      *
      * @ORM\ManyToOne(targetEntity="Payment")
      * @ORM\JoinColumns({
@@ -56,7 +55,7 @@ class Appointment
     private $payment;
 
     /**
-     * @var \Service
+     * @var Service
      *
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumns({
@@ -66,7 +65,7 @@ class Appointment
     private $service;
 
     /**
-     * @var \ServiceWorkingHours
+     * @var ServiceWorkingHours
      *
      * @ORM\ManyToOne(targetEntity="ServiceWorkingHours")
      * @ORM\JoinColumns({
@@ -76,7 +75,7 @@ class Appointment
     private $serviceTime;
 
     /**
-     * @var \Worker
+     * @var Worker
      *
      * @ORM\ManyToOne(targetEntity="Worker")
      * @ORM\JoinColumns({
@@ -200,7 +199,7 @@ class Appointment
      *
      * @return Appointment
      */
-    public function setService(\Service $service = null)
+    public function setService(Service$service = null)
     {
         $this->service = $service;
 
@@ -220,11 +219,11 @@ class Appointment
     /**
      * Set serviceTime.
      *
-     * @param \ServiceWorkingHours|null $serviceTime
+     * @param ServiceWorkingHours|null $serviceTime
      *
      * @return Appointment
      */
-    public function setServiceTime(\ServiceWorkingHours $serviceTime = null)
+    public function setServiceTime(ServiceWorkingHours $serviceTime = null)
     {
         $this->serviceTime = $serviceTime;
 
@@ -234,7 +233,7 @@ class Appointment
     /**
      * Get serviceTime.
      *
-     * @return \ServiceWorkingHours|null
+     * @return ServiceWorkingHours|null
      */
     public function getServiceTime()
     {

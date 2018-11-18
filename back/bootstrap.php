@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use app\repository\ServiceRepository;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\ORM\EntityManager;
@@ -38,6 +39,10 @@ $container[EntityManager::class] = function (Container $container): EntityManage
 
     $em->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
     return $em;
+};
+
+$container[ServiceRepository::class] = function ($container) {
+    return new ServiceRepository($container[EntityManager::class], p);
 };
 
 return $container;

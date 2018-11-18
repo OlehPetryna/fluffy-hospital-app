@@ -1,6 +1,5 @@
 <?php
-
-
+namespace app\domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,7 +21,7 @@ class Client
     private $id;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({

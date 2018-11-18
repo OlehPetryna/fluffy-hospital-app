@@ -1,6 +1,5 @@
 <?php
-
-
+namespace app\domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,7 +21,7 @@ class WorkerPosition
     private $id;
 
     /**
-     * @var \Position
+     * @var Position
      *
      * @ORM\ManyToOne(targetEntity="Position")
      * @ORM\JoinColumns({
@@ -32,7 +31,7 @@ class WorkerPosition
     private $position;
 
     /**
-     * @var \Worker
+     * @var Worker
      *
      * @ORM\ManyToOne(targetEntity="Worker")
      * @ORM\JoinColumns({

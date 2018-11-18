@@ -1,5 +1,5 @@
 <?php
-
+namespace app\domain;
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -43,7 +43,7 @@ class ServiceWorkingHours
     private $to;
 
     /**
-     * @var \Service
+     * @var Service
      *
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumns({
@@ -143,7 +143,7 @@ class ServiceWorkingHours
      *
      * @return ServiceWorkingHours
      */
-    public function setService(\Service $service = null)
+    public function setService(Service$service = null)
     {
         $this->service = $service;
 

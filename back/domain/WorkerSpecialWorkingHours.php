@@ -1,5 +1,5 @@
 <?php
-
+namespace app\domain;
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -50,7 +50,7 @@ class WorkerSpecialWorkingHours
     private $to;
 
     /**
-     * @var \Worker
+     * @var Worker
      *
      * @ORM\ManyToOne(targetEntity="Worker")
      * @ORM\JoinColumns({

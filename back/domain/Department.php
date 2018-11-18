@@ -1,6 +1,5 @@
 <?php
-
-
+namespace app\domain;
 
 use Doctrine\ORM\Mapping as ORM;
 

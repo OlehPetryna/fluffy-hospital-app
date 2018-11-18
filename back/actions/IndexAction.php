@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class IndexRoute extends BaseObject
+class IndexAction extends BaseObject
 {
     public function __invoke(Request $request, Response $response, $args)
     {

@@ -1,6 +1,5 @@
 <?php
-
-
+namespace app\domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Service", indexes={@ORM\Index(name="FK_Service_Worker", columns={"worker_id"})})
  * @ORM\Entity
  */
-class Service
+class Service implements \JsonSerializable
 {
     /**
      * @var int
@@ -64,7 +63,7 @@ class Service
     private $lastUpdateDate = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var \Worker
+     * @var Worker
      *
      * @ORM\ManyToOne(targetEntity="Worker")
      * @ORM\JoinColumns({
@@ -251,5 +250,22 @@ class Service
     public function getWorker()
     {
         return $this->worker;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'title' => $this->getName(),
+            'id' => $this->getId(),
+            'price' => $this->getPrice(),
+            'duration' => $this->getDuration()
+        ];
     }
 }
