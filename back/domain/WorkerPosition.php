@@ -33,7 +33,7 @@ class WorkerPosition
     /**
      * @var Worker
      *
-     * @ORM\ManyToOne(targetEntity="Worker")
+     * @ORM\ManyToOne(targetEntity="Worker", inversedBy="workerPositions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="worker_id", referencedColumnName="id")
      * })
@@ -55,7 +55,7 @@ class WorkerPosition
     /**
      * Set position.
      *
-     * @param \Position|null $position
+     * @param Position|null $position
      *
      * @return WorkerPosition
      */
@@ -79,7 +79,7 @@ class WorkerPosition
     /**
      * Set worker.
      *
-     * @param \Worker|null $worker
+     * @param Worker|null $worker
      *
      * @return WorkerPosition
      */

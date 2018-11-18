@@ -139,7 +139,7 @@ class ServiceWorkingHours
     /**
      * Set service.
      *
-     * @param \Service|null $service
+     * @param Service|null $service
      *
      * @return ServiceWorkingHours
      */

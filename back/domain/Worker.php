@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Worker", indexes={@ORM\Index(name="FK_Worker_User", columns={"user_id"}), @ORM\Index(name="FK_Worker_Department", columns={"department_id"})})
  * @ORM\Entity
  */
-class Worker
+class Worker implements \JsonSerializable
 {
     /**
      * @var int
@@ -48,7 +48,12 @@ class Worker
      */
     private $user;
 
-
+    /**
+     * @var WorkerPosition[]
+     *
+     * @OneToMany(targetEntity="WorkerPosition", mappedBy="worker")
+     */
+    private $workerPositions;
 
     /**
      * Get id.
@@ -87,7 +92,7 @@ class Worker
     /**
      * Set department.
      *
-     * @param \Department|null $department
+     * @param Department|null $department
      *
      * @return Worker
      */
@@ -111,7 +116,7 @@ class Worker
     /**
      * Set user.
      *
-     * @param \User|null $user
+     * @param User|null $user
      *
      * @return Worker
      */
@@ -130,5 +135,37 @@ class Worker
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param WorkerPosition[] $workerPositions
+     */
+    public function setWorkerPositions(array $workerPositions)
+    {
+        $this->workerPositions = $workerPositions;
+    }
+
+    /**
+     * @return WorkerPosition[]
+     */
+    public function getWorkerPositions()
+    {
+        return $this->workerPositions;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return array_replace($this->getUser()->jsonSerialize(), [
+            'id' => $this->getId(),
+            'description' => $this->getDescription(),
+//            'positions' => $this->getWorkerPositions()
+        ]);
     }
 }

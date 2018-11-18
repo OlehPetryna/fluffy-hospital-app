@@ -147,7 +147,7 @@ class Appointment
     /**
      * Set client.
      *
-     * @param \Client|null $client
+     * @param Client|null $client
      *
      * @return Appointment
      */
@@ -171,7 +171,7 @@ class Appointment
     /**
      * Set payment.
      *
-     * @param \Payment|null $payment
+     * @param Payment|null $payment
      *
      * @return Appointment
      */
@@ -195,7 +195,7 @@ class Appointment
     /**
      * Set service.
      *
-     * @param \Service|null $service
+     * @param Service|null $service
      *
      * @return Appointment
      */
@@ -243,7 +243,7 @@ class Appointment
     /**
      * Set worker.
      *
-     * @param \Worker|null $worker
+     * @param Worker|null $worker
      *
      * @return Appointment
      */

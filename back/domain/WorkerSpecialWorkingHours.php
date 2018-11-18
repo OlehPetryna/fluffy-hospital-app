@@ -170,7 +170,7 @@ class WorkerSpecialWorkingHours
     /**
      * Set worker.
      *
-     * @param \Worker|null $worker
+     * @param Worker|null $worker
      *
      * @return WorkerSpecialWorkingHours
      */

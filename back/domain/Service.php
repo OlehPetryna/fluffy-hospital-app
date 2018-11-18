@@ -231,7 +231,7 @@ class Service implements \JsonSerializable
     /**
      * Set worker.
      *
-     * @param \Worker|null $worker
+     * @param Worker|null $worker
      *
      * @return Service
      */

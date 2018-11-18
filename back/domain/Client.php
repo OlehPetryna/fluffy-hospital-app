@@ -45,7 +45,7 @@ class Client
     /**
      * Set user.
      *
-     * @param \User|null $user
+     * @param User|null $user
      *
      * @return Client
      */
