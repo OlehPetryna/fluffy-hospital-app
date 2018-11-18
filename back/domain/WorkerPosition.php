@@ -34,9 +34,7 @@ class WorkerPosition
      * @var Worker
      *
      * @ORM\ManyToOne(targetEntity="Worker", inversedBy="workerPositions")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="worker_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="worker_id", referencedColumnName="id")
      */
     private $worker;
 

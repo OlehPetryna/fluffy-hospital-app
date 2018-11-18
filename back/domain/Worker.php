@@ -165,7 +165,7 @@ class Worker implements \JsonSerializable
         return array_replace($this->getUser()->jsonSerialize(), [
             'id' => $this->getId(),
             'description' => $this->getDescription(),
-//            'positions' => $this->getWorkerPositions()
+            'positions' => $this->getWorkerPositions()
         ]);
     }
 }
