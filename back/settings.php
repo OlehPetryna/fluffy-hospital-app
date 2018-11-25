@@ -8,12 +8,12 @@ $dotenv->load();
 
 return [
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => getenv('PROD') ? false : true,
         'determineRouteBeforeAppMiddleware' => false,
 
         'doctrine' => [
             // if true, metadata caching is forcefully disabled
-            'dev_mode' => true,
+            'dev_mode' => getenv('PROD') ? false : true,
 
             // path where the compiled metadata info will be cached
             // make sure the path exists and it is writable
