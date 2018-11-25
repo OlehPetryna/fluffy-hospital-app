@@ -1,6 +1,7 @@
 <?php
 namespace app\domain;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Service implements \JsonSerializable
 {
+    public function __construct()
+    {
+        $this->workingHours = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -26,6 +32,13 @@ class Service implements \JsonSerializable
      * @ORM\Column(name="working_hours_id", type="integer", nullable=false)
      */
     private $workingHoursId;
+
+    /**
+     * @var ArrayCollection|WorkerPosition[]
+     *
+     * @ORM\OneToMany(targetEntity="ServiceWorkingHours", mappedBy="service")
+     */
+    private $workingHours;
 
     /**
      * @var string
@@ -106,6 +119,24 @@ class Service implements \JsonSerializable
     public function getWorkingHoursId()
     {
         return $this->workingHoursId;
+    }
+
+    /**
+     * @param ArrayCollection|ServiceWorkingHours[]
+     * @return $this
+     */
+    public function setWorkingHours(array $workingHours) {
+        $this->workingHours = $workingHours;
+
+        return $this;
+    }
+
+    /**
+     * @return WorkerPosition[]|ArrayCollection
+     */
+    public function getWorkingHours()
+    {
+        return $this->workingHours;
     }
 
     /**
@@ -265,7 +296,11 @@ class Service implements \JsonSerializable
             'title' => $this->getName(),
             'id' => $this->getId(),
             'price' => $this->getPrice(),
-            'duration' => $this->getDuration()
+            'duration' => $this->getDuration(),
+            'worker' => $this->getWorker()->jsonSerialize(),
+            'hours' => $this->getWorkingHours()->map(function (ServiceWorkingHours $hours) {
+                return $hours->jsonSerialize();
+            })->toArray()
         ];
     }
 }

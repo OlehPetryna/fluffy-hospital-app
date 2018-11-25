@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Service_working_hours", uniqueConstraints={@ORM\UniqueConstraint(name="service_id_from_to", columns={"service_id", "from", "to", "day"})}, indexes={@ORM\Index(name="IDX_905B4367ED5CA9E6", columns={"service_id"})})
  * @ORM\Entity
  */
-class ServiceWorkingHours
+class ServiceWorkingHours implements \JsonSerializable
 {
     /**
      * @var int
@@ -45,7 +45,7 @@ class ServiceWorkingHours
     /**
      * @var Service
      *
-     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="workingHours")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      * })
@@ -158,5 +158,22 @@ class ServiceWorkingHours
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'day' => $this->getDay(),
+            'from' => $this->getFrom(),
+            'to' => $this->getTo()
+        ];
     }
 }

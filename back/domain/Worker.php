@@ -55,7 +55,7 @@ class Worker implements \JsonSerializable
     private $user;
 
     /**
-     * @var WorkerPosition[]
+     * @var ArrayCollection|WorkerPosition[]
      *
      * @ORM\OneToMany(targetEntity="WorkerPosition", mappedBy="worker")
      */
@@ -152,7 +152,7 @@ class Worker implements \JsonSerializable
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|WorkerPosition[]
      */
     public function getWorkerPositions()
     {
