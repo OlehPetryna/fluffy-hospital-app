@@ -2,6 +2,7 @@
 namespace app\domain;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Worker implements \JsonSerializable
 {
+    public function __construct()
+    {
+        $this->workerPositions = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -51,7 +57,7 @@ class Worker implements \JsonSerializable
     /**
      * @var WorkerPosition[]
      *
-     * @OneToMany(targetEntity="WorkerPosition", mappedBy="worker")
+     * @ORM\OneToMany(targetEntity="WorkerPosition", mappedBy="worker")
      */
     private $workerPositions;
 
@@ -146,7 +152,7 @@ class Worker implements \JsonSerializable
     }
 
     /**
-     * @return WorkerPosition[]
+     * @return ArrayCollection
      */
     public function getWorkerPositions()
     {
@@ -165,7 +171,9 @@ class Worker implements \JsonSerializable
         return array_replace($this->getUser()->jsonSerialize(), [
             'id' => $this->getId(),
             'description' => $this->getDescription(),
-            'positions' => $this->getWorkerPositions()
+            'positions' => $this->getWorkerPositions()->map(function (WorkerPosition $workerPosition) {
+                return $workerPosition->getPosition()->jsonSerialize();
+            })->toArray()
         ]);
     }
 }
