@@ -20,14 +20,13 @@ abstract class RestController
 
     public function list(Request $request, Response $response, array $args): Response
     {
-        $services = $this->entityManager->getRepository($this->entityClass)->findAll();
-        return $response->withJson($services, 200);
+        $models = $this->entityManager->getRepository($this->entityClass)->findAll();
+        return $response->withJson($models, $models ? 200 : 404);
     }
 
     public function show(Request $request, Response $response, array $args): Response
     {
-        return $response->withJson(
-            $this->entityManager->getRepository($this->entityClass)->find($args['id']),
-            200);
+        $model = $this->entityManager->getRepository($this->entityClass)->find($args['id']);
+        return $response->withJson($model, $model ? 200 : 404);
     }
 }
