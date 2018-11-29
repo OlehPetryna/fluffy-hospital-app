@@ -20,7 +20,10 @@ abstract class RestController
 
     public function list(Request $request, Response $response, array $args): Response
     {
-        $models = $this->entityManager->getRepository($this->entityClass)->findAll();
+        $models = $this->entityManager
+            ->getRepository($this->entityClass)
+            ->findBy([], $request->getAttribute('sortQuery'), $request->getAttribute('limitQuery'), $request->getAttribute('offsetQuery'));
+
         return $response->withJson($models, $models ? 200 : 404);
     }
 

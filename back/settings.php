@@ -11,6 +11,7 @@ return [
         'displayErrorDetails' => getenv('PROD') ? false : true,
         'determineRouteBeforeAppMiddleware' => false,
 
+        'jwtSecret' => getenv('JWT_SECRET'),
         'doctrine' => [
             // if true, metadata caching is forcefully disabled
             'dev_mode' => getenv('PROD') ? false : true,

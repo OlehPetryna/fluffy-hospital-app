@@ -122,10 +122,10 @@ class Service implements \JsonSerializable
     }
 
     /**
-     * @param ArrayCollection|ServiceWorkingHours[]
+     * @param ArrayCollection $workingHours
      * @return $this
      */
-    public function setWorkingHours(array $workingHours) {
+    public function setWorkingHours(ArrayCollection $workingHours) {
         $this->workingHours = $workingHours;
 
         return $this;

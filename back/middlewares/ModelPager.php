@@ -8,23 +8,26 @@ use http\Exception\InvalidArgumentException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class ModelSorter
+class ModelPager
 {
-    private $sortParamName = 'sort-attribute';
-    private $sortDirectionName = 'sort-dir';
+    private $pageParamName = 'page';
+    private $pageSizeParamName = 'page-size';
 
-    private $directions = [1 => 'ASC', -1 => 'DESC'];
+    private $defaultPageSize = 20;
 
     public function __invoke(Request $request, Response $response, callable $next)
     {
-        if ($param = $request->getAttribute($this->sortParamName)) {
-            $direction = $this->directions[$request->getAttribute($this->sortDirectionName, 1)] ?? null;
-            if ($direction === null) {
-                throw new InvalidArgumentException('Invalid sort direction provided', 403);
-            }
+        if ($page = $request->getQueryParam($this->pageParamName)) {
+            $size = $request->getQueryParam($this->pageSizeParamName, $this->defaultPageSize);
 
-            $sort = [$param => $direction];
-            $request = $request->withAttribute('sortQuery', $sort);
+            --$page; //not zero-based, so first page really should be first
+
+            $offset = $size * $page;
+            $limit = $size;
+
+            $request = $request
+                ->withAttribute('offsetQuery', $offset)
+                ->withAttribute('limitQuery', $limit);
         }
 
         return $next($request, $response);

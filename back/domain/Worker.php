@@ -62,6 +62,13 @@ class Worker implements \JsonSerializable
     private $workerPositions;
 
     /**
+     * @var ArrayCollection|WorkerWorkingHours[]
+     *
+     * @ORM\OneToMany(targetEntity="WorkerWorkingHours", mappedBy="worker")
+     */
+    private $workingHours;
+
+    /**
      * Get id.
      *
      * @return int
@@ -144,11 +151,14 @@ class Worker implements \JsonSerializable
     }
 
     /**
-     * @param WorkerPosition[] $workerPositions
+     * @param ArrayCollection $workerPositions
+     * @return Worker
      */
-    public function setWorkerPositions(array $workerPositions)
+    public function setWorkerPositions(ArrayCollection $workerPositions)
     {
         $this->workerPositions = $workerPositions;
+
+        return $this;
     }
 
     /**

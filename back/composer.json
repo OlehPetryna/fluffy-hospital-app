@@ -3,7 +3,8 @@
         "slim/slim": "^3.0",
         "propel/propel": "~2.0@dev",
         "doctrine/orm": "*",
-        "vlucas/phpdotenv": "^2.5"
+        "vlucas/phpdotenv": "^2.5",
+        "tuupola/slim-jwt-auth": "^3.1"
     },
     "autoload": {
         "psr-4": {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace app\providers;
 
 
+use app\base\Authentication;
 use app\controllers\DepartmentController;
 use app\controllers\ServicesController;
 use app\controllers\WorkerController;
@@ -25,6 +26,10 @@ class Slim implements ServiceProviderInterface
 
         $pimple[ServicesController::class] = function (Container $container): ServicesController {
             return new ServicesController($container[EntityManager::class]);
+        };
+
+        $pimple[Authentication::class] = function (Container $container): Authentication {
+            return new Authentication($container[EntityManager::class], $container);
         };
 
     }
