@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use app\base\Authentication;
+use app\controllers\AuthenticationController;
 use app\controllers\DepartmentController;
 use app\controllers\ServicesController;
 use app\actions\IndexAction;
@@ -37,6 +38,7 @@ $app->add(new JwtAuthentication([
 $app->any('/', IndexAction::class);
 
 $app->group('/api', function () use ($app) {
+    $app->post('/login', AuthenticationController::class . ':login');
 
     $app->get('/service', ServicesController::class . ':list')
         ->add(ModelPager::class)

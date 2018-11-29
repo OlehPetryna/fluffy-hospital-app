@@ -33,4 +33,33 @@ class Authentication
 
         $this->container['userIdentity'] = $user;
     }
+
+    public function encryptPassword(string $raw): string {
+        return password_hash($raw, PASSWORD_DEFAULT);
+    }
+
+    public function validatePassword(string $raw, string $hash): bool {
+        return password_verify($raw, $hash);
+    }
+
+    private $errors = [];
+    public function authenticate(string $login, string $rawPassword): ?User {
+        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $login]);
+        if ($user) {
+            if ($this->validatePassword($rawPassword, $user->getPassword())) {
+                $this->container['userIdentity'] = $user;
+                return $user;
+            } else {
+                $this->errors['authenticate'] = 'Invalid password';
+            }
+        } else {
+            $this->errors['authenticate'] = 'Invalid login';
+        }
+
+        return null;
+    }
+
+    public function getLastError() {
+        return $this->errors['authenticate'] ?? null;
+    }
 }
