@@ -7,6 +7,7 @@ namespace app\controllers;
 use app\base\Authentication;
 use app\domain\User;
 use Doctrine\ORM\EntityManager;
+use Firebase\JWT\JWT;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -25,6 +26,11 @@ class AuthenticationController
     public function login(Request $request, Response $response, array $args): Response
     {
         $user = $this->authentication->authenticate($request->getParsedBodyParam('login'), $request->getParsedBodyParam('password'));
+
+        if ($user) {
+            $response->withHeader('Authorization', $this->authentication->generateJWT($user));
+        }
+
         return $response->withJson($user ?: $this->authentication->getLastError(), $user ? 200 : 401);
     }
 }
